@@ -1,0 +1,13 @@
+#!/bin/bash
+
+touchpad_string='Touchpad'
+touchpad_id=$(xinput list | awk -F"\t"  -v pattern="$touchpad_string" '$0 ~ pattern{print $2}' | grep -o '[0-9]\+')
+touchpad_status=$(xinput list-props "$touchpad_id" | awk /Device\ Enabled/'{print $NF}')
+
+if [[ touchpad_status -eq 0 ]]; then
+    xinput --set-prop $touchpad_id "Device Enabled" 1
+    notify-send "Touchpad ON" -i /home/antonio/Immagini/touchpad_on.png
+else
+    xinput --set-prop $touchpad_id "Device Enabled" 0
+    notify-send "Touchpad OFF" -i /home/antonio/Immagini/touchpad_off.png
+fi

@@ -1,0 +1,419 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Monospace Regular 8
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+
+# class                 border  bground text    indicator child_border
+client.focused          #4C7899 #2200FF #F9FF45 #2E9EF4   #285577
+client.focused_inactive #333333 #46637F #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #46637F #FFFFFF #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+
+set $up i
+set $down k
+set $left j
+set $right l
+
+set $mod Mod4
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# start dmenu (a program launcher)
+bindsym Mod1+F2 exec grun
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+
+
+# reload the configuration file
+bindsym $mod+Ctrl+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+# Personal Bindings
+
+# Section Volume
+
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0  '-7%' 
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0  '+7%'
+#bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+
+#	Section Mouse
+
+	bindsym XF86TouchpadToggle exec /home/antonio/bin/touchpad.toggle
+    # The middle button over a titlebar kills the window
+    bindsym --release button2 kill
+#	Section mpd
+
+	bindsym XF86AudioPlay exec mpc toggle
+	bindsym XF86AudioNext exec mpc next
+	bindsym XF86AudioPrev exec mpc prev
+	bindsym XF86AudioStop exec mpc stop
+
+#	Section launchers
+	
+	bindsym bindsym $mod+F1 exec chromium
+#	bindsym bindsym $mod+F2 exec thunderbird
+	
+#	Section miscellaneous
+	
+	bindsym $mod+x [urgent=latest] focus
+	
+#	set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown mode "$mode_system" {
+#    bindsym l exec --no-startup-id i3exit lock, mode "default"
+#    bindsym e exec --no-startup-id i3exit logout, mode "default"
+#    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+#    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+#    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+#   bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"  
+
+##	back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#	}
+	
+bindsym $mod+Pause mode "$mode_system"
+
+bindsym XF86Display exec /home/antonio/bin/LVDS1.toggle
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    output            LVDS1
+#      status_command    i3status -c /home/antonio/.config/i3status/config_i3s
+     status_command    py3status -c /home/antonio/.config/i3status/config
+#    status_command /home/antonio/git/i3config/i3barconky
+    position          top
+    workspace_buttons yes
+    tray_output none
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	font pango:DejaVu Sans Mono 10
+    colors {
+        background #000000
+        statusline #ffffff
+
+        focused_workspace  #ffffff #285577
+        active_workspace   #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace   #ffffff #900000
+    }
+}
+
+
+#bar {
+   # output            VGA1
+#    status_command    i3status
+	
+   # tray_output       VGA1
+    #position          	top
+   # workspace_buttons 	yes
+  #  tray_output none
+#    status_command /home/antonio/bin/conky-i3bar_top
+
+    #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	#font pango:DejaVu Sans Mono,Icons, pango:WebHostingHub-Glyphs, pango:Cousine, FontAwesome  11
+#
+ #  }
+   
+   bar {
+    output            VGA1
+#    status_command    i3status
+	
+   # tray_output       VGA1
+    position          	top
+    workspace_buttons 	yes
+    tray_output none
+    status_command i3blocks -c /home/antonio/.config/i3blocks/config_hdmi_top
+
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	font pango:DejaVu Sans Mono,Icons, pango:WebHostingHub-Glyphs, pango:Cousine, FontAwesome  11
+
+   }
+
+
+
+bar {
+
+    output            VGA1
+#    status_command    i3status
+	tray_output       VGA1
+    position          	bottom
+    workspace_buttons 	no
+    status_command /home/antonio/bin/conky-i3bar
+
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	font pango:DejaVu Sans Mono, Icons 9
+
+   }
+
+
+
+# Workspaces
+set $tag1	1:www
+set $tag2	2:mail
+set $tag3	3:Thunar
+set $tag4	4:skype
+set $tag5	5:telegram
+set $tag9	9
+
+workspace $tag1 output VGA1
+workspace $tag2 output LVDS1
+workspace $tag3 output VGA1
+workspace $tag4 output LVDS1
+workspace $tag5 output LVDS1
+workspace $tag9 output LVDS1
+
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+exec --no-startup-id /home/antonio/bin/i3_focus.run
+
+
+for_window [class="smplayer"] floating enable
+
+for_window [class="MPlayer"] floating enable
+
+for_window [class="guake"] floating enable
+for_window [class="Main.py"] floating enable
+
+assign [class="Chromium" window_role="browser"] $tag1
+for_window [class="Chromium" window_role="browser"] focus
+
+assign [class="Firefox" window_role="browser"] $tag1
+for_window [class="Firefox" window_role="browser"] focus
+
+
+
+assign [class="telegram-desktop"] $tag5
+for_window [class="telegram-desktop"] focus
+assign [class="Telegram"] $tag5
+for_window [class="Telegram"] focus
+
+assign [class="Skype"] $tag4
+for_window [class="skype"] focus
+for_window [class="Skype" window_role="CallWindow"] floating enable
+assign [class="Skype" window_role="CallWindow"] workspace current
+for_window [class="Skype" title="Trasferimenti file"] floating enable
+
+for_window [instance="GameRanger.exe" title="Friends"] floating enable
+for_window [instance="GameRanger.exe" title="Game Launched"] floating enable
+
+
+assign [class="Thunderbird"] $tag2
+for_window [class="Thunderbird"] focus
+
+assign [class="Nemo"] $tag3
+assign [class="Thunar"] $tag3
+#for_window [class="Thunar"] focus
+#or_window [class="Nemo"] focus
+
+
+for_window [Class="voobly.exe" title=".*Conversazione"] move to workspace $tag5
+for_window [Class="voobly.exe" title=".*Conversazione"] no_focus
+assign [Class="voobly.exe" title=".*Conversazione"] $tag5
+
+assign [class="Chromium"  window_role="pop-up"] $tag5
+for_window [class="Chromium"  window_role="pop-up"] focus
+
+assign [class="MATLAB.*" title="^Fig"] $tag9
+for_window [class="MATLAB.*" title="^Fig"] focus
+
+assign [title="DS PDF Viewer - Audience Window"] $tag4
+assign [title="DS PDF Viewer - Secondary Window"] $tag3
+assign [title="VMware Workstation 12 Player"] $tag3
+for_window [title="VMware Workstation 12 Player"] focus
+
+
+assign [class="0ad"] $tag1
+#make notifications behave
+for_window [class="Xfce4-notifyd"] floating enable
+for_window [class="Xfce4-notifyd"] border none
+for_window [class="Orage"] floating enable
+for_window [class="Orage"] border none
+for_window [class="Galculator"] floating enable
+for_window [class="Galculator"] border none
+for_window [class="YADWIN"] border none
+for_window [instance="Download"] floating enable
+for_window [class="Pnmixer"] floating enable
+for_window [window_role="plugin_ui"] floating enable
+for_window [title="Menu Update"] floating enable
+#for_window [title="___"] floating enable
+for_window [title=".*Parameters.*"] floating enable
+for_window [title=".*Simulink.*"] floating enable
+for_window [title="Block Properties.*"] floating enable
+
+for_window [class="Yad"] floating enable
+
+
+for_window [class="Conky"  instance="Conky" title="conky_proc"] focus
+for_window [class="Conky"  instance="Conky" title="conky_mem"] focus
+
+#exec --no-startup-id /home/antonio/bin/best_res_VGA
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id numlockx off
+exec --no-startup-id compton --config /home/antonio/.compton.conf
+exec --no-startup-id guake
+#exec --no-startup-id pulseaudio -D
+exec --no-startup-id dropbox
+#exec --no-startup-id xscreensaver -no-splash
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec --no-startup-id xfce4-volumed-pulse
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
+exec --no-startup-id clipit
+exec --no-startup-id tp-battery-icon
+exec --no-startup-id udiskie
+#exec --no-startup-id chromium
+#exec --no-startup-id /bin/skype
+#exec --no-startup-id /opt/viber/Viber
+#exec --no-startup-id thunderbird
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id blueberry-tray
+
+exec --no-startup-id /home/antonio/bin/autostart.i3
+
+exec --no-startup-id xrandr --output VGA1 --primary --auto
+exec --no-startup-id xrandr --output LVDS1 --off

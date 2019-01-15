@@ -1,0 +1,9 @@
+
+#!/bin/bash
+current_lang="$LANG"
+LANG=C
+sum=$(mpstat -P ALL 1 1 | awk '/Average:/ && $2 ~ /[0-9]/ {print $3}' | awk '{ sum+=$1} END {print sum}')
+cpus=$(grep -c processor /proc/cpuinfo)
+average=$(echo 'scale=0;'"$sum" / "$cpus" | bc ) 
+printf "%2d\n" "$average"
+LANG="$current_lang"
