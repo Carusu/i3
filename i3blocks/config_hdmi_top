@@ -17,7 +17,7 @@ separator_block_width=5
 [weather3]
 command=echo  ""$(/home/antonio/meteo1.script -t)"°"
 interval=1800
-color=#007CFF
+color=#8FC2F6
 separator_block_width=20
 
 
@@ -33,7 +33,7 @@ separator_block_width=5
 #wifi0 specifi
 command=echo ""$(cat /sys/class/net/wifi0/statistics/rx_bytes  | numfmt --to=iec --format='%.1f')" + "$(cat /sys/class/net/wifi0/statistics/tx_bytes  | numfmt --to=iec --format='%.1f')""
 interval=1
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=15
 
@@ -49,7 +49,7 @@ separator_block_width=5
 #Download speed
 command=/home/antonio/bin/net_speed.run wifi0 rx
 interval=1
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=5
 
@@ -65,7 +65,7 @@ separator_block_width=5
 #Upload speed
 command=/home/antonio/bin/net_speed.run wifi0 tx
 interval=1
-color=#007CFF
+color=#8FC2F6
 separator_block_width=20
 
 [disk1]
@@ -88,7 +88,7 @@ separator_block_width=5
 command=echo ""$(df /dev/sda2 --output=used -k -h | sed -e 1d -e "s/ //g")"/"$(df /dev/sda2 --output=size -k -h | sed -e 1d -e "s/ //g")""
 markup=pango
 interval=15
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=15
 
@@ -104,7 +104,7 @@ separator_block_width=5
 command=echo ""$(df /dev/sdb2 --output=used -k -h | sed -e 1d -e "s/ //g")"/"$(df /dev/sdb2 --output=size -k -h | sed -e 1d -e "s/ //g")""
 markup=pango
 interval=15
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=15
 
@@ -120,7 +120,7 @@ separator_block_width=5
 command=echo ""$(df /dev/sda3 --output=used -k -h | sed -e 1d -e "s/ //g")"/"$(df /dev/sda3 --output=size -k -h | sed -e 1d -e "s/ //g")""
 markup=pango
 interval=15
-color=#007CFF
+color=#8FC2F6
 separator_block_width=20
 
 [system1]
@@ -133,7 +133,7 @@ separator_block_width=5
 [system2]
 command=echo "$(sensors | awk -F'[^0-9]*'awk -F'[^0-9]*' /temp1/'{print $3}')"°
 interval=3
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=15
 
@@ -148,7 +148,7 @@ separator_block_width=5
 [system4]
 command=/home/antonio/.config/i3blocks/blocklets/mem
 interval=2
-color=#007CFF
+color=#8FC2F6
 separator=false
 separator_block_width=15
 
@@ -163,7 +163,7 @@ separator_block_width=5
 [system6]
 command=/home/antonio/.config/i3blocks/blocklets/proc
 interval=2
-color=#007CFF
+color=#8FC2F6
 separator_block_width=20
 
 
