@@ -25,11 +25,13 @@ font pango:Monospace Regular 8
 # the arrows is not convenient
 
 # class                 border  bground text    indicator child_border
-client.focused          #4C7899 #2200FF #F9FF45 #2E9EF4   #285577
-client.focused_inactive #333333 #46637F #FFFFFF #484E50   #5F676A
-client.unfocused        #333333 #46637F #FFFFFF #292D2E   #222222
-client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+client.focused          #f0e88a #f0e88a #6B4958 #8FC2F6   #f0e88a
+client.focused_inactive #8FC2F6 #8FC2F6 #6B4958 #f0e88a   #C0505E
+client.unfocused        #8FC2F6 #8FC2F6 #6B4958 #f0e88a   #8FC2F6
+client.urgent           #C0505E #C0505E #FFFFFF #8FC2F6   #C0505E
+client.placeholder      #000000 #0C0C0C #6B4958 #000000   #0C0C0C
+
 
 
 set $up i
@@ -198,26 +200,6 @@ bindsym XF86Display exec /home/antonio/bin/LVDS1.toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    output            LVDS1
-#      status_command    i3status -c /home/antonio/.config/i3status/config_i3s
-     status_command    py3status -c /home/antonio/.config/i3status/config
-#    status_command /home/antonio/git/i3config/i3barconky
-    position          top
-    workspace_buttons yes
-    tray_output none
-    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-	font pango:DejaVu Sans Mono 10
-    colors {
-        background #000000
-        statusline #ffffff
-
-        focused_workspace  #ffffff #285577
-        active_workspace   #ffffff #333333
-        inactive_workspace #888888 #222222
-        urgent_workspace   #ffffff #900000
-    }
-}
 
 
 #bar {
@@ -247,6 +229,17 @@ bar {
 
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 	font pango:DejaVu Sans Mono,Icons, pango:WebHostingHub-Glyphs, pango:Cousine, FontAwesome  11
+  colors {
+    background #4F4B5E
+    statusline #FFFFFF
+    separator  #666666
+
+    focused_workspace  #fff68c #fff68c #6B4958
+    active_workspace   #f0e88a #f0e88a #6B4958
+    inactive_workspace #4F4B5E #4F4B5E #FFFFFF
+    urgent_workspace   #C0505E #C0505E #FFFFFF
+    binding_mode       #f0e88a #C0505E #FFFFFF
+  }
 
    }
 
@@ -264,6 +257,17 @@ bar {
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 	font pango:DejaVu Sans Mono, Icons 9
 
+  colors {
+    background #4F4B5E
+    statusline #FFFFFF
+    separator  #666666
+
+    focused_workspace  #8FC2F6 #8FC2F6 #6B4958
+    active_workspace   #f0e88a #f0e88a #6B4958
+    inactive_workspace #4F4B5E #4F4B5E #FFFFFF
+    urgent_workspace   #C0505E #C0505E #FFFFFF
+    binding_mode       #f0e88a #C0505E #FFFFFF
+  }
    }
 
 
